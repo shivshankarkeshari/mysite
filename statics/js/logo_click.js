@@ -1,8 +1,7 @@
 console.log("Hello");
 
-function form_show() {
-    console.log("HI")
-//    form = $("#ApplicationForm");
-//    form.css("opacity", 1);
-//    $('#form-show').hide();
+function logo_hide() {
+    console.log("HI");
+    document.body.style.background = '#A71FF4';
+    $('#logo_id').hide();
 };

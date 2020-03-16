@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<style>
+#logo_id {
+  opacity: 0.7;
+  transition: 0.3s;
+}
+#logo_id:hover {opacity: 1}
+</style>
+
 <head>
 
     <meta charset="UTF-8">
@@ -14,15 +22,12 @@
 
 </head>
 
-
 <body>
 
-    <img src="{% static 'img/eagle.png' %}" height="75px"
-            onclick="form_show()"
-            id="form-show"
+    <img src="{% static 'img/eagle.png' %}" height="65px"
+            onclick="logo_hide()"
+            id="logo_id"
             style="margin: 100px auto; display: block">
-
-
 
 </body>
 </html>
