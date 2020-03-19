@@ -12,7 +12,8 @@
 <head>
 
     <meta charset="UTF-8">
-    <title>EDP Form</title>
+<!--    adding tab title-->
+    <title>Small Blind Dealer</title>
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
@@ -20,14 +21,20 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <script src="{% static 'js/logo_click.js' %}" ></script>
 
+<!--    adding app icon-->
+    <link rel="shortcut icon" href="{% static 'img/eagle.png' type='image/x-icon' %}">
+
+
 </head>
 
 <body>
 
     <img src="{% static 'img/eagle.png' %}" height="65px"
-            onclick="logo_hide()"
-            id="logo_id"
-            style="margin: 100px auto; display: block">
+        onclick="logo_hide()"
+        id="logo_id"
+        style="margin: 100px auto; display: block"
+    >
+    <h1 id="rendom_shit">Small Blind Dealer</h1>
 
 </body>
 </html>
