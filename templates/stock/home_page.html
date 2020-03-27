@@ -1,44 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<style>
+<script>
 
-#random_shit {
-    display: none;
-}
-#logo_id {
-  opacity: 0.7;
-  transition: 0.3s;
-}
-#logo_id:hover {opacity: 1}
-</style>
-
+</script>
 <head>
 
     <meta charset="UTF-8">
 <!--    adding tab title-->
-    <title>Small Blind Dealer</title>
+    <title>Home Page</title>
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
     {% load staticfiles %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <script src="{% static 'js/logo_click.js' %}" ></script>
 
 <!--    adding app icon-->
-    <link rel="shortcut icon" href="{% static 'img/eagle.png' type='image/x-icon' %}">
-
+    <link rel="shortcut icon" href="{% static 'img/eagle.png; img/to_do.png' type='image/x-icon' %}">
 
 </head>
 
 <body>
+<!--<div style="height: 100px; width: 100px; display: block; background-color:lightblue">-->
 
-    <img src="{% static 'img/eagle.png' %}" height="65px"
-        onclick="logo_hide()"
-        id="logo_id"
-        style="margin: 100px auto; display: block"
-    >
-    <h1 id="random_shit">Small Blind Dealer</h1>
+<div>
+    <div>
+        <a href="{% url 'background_template' %}">
+        <img src="{% static 'img/eagle.png' %}" height="65px" id="logo_id" style="margin: 100px auto; display: block">
+        </a>
+    </div>
+
+    <div>
+        <a href="{% url 'list' %}">
+        <img src="{% static 'img/to_do.png' %}" height="65px" id="to-do" style="margin: 200px auto; display: block">
+        </a>
+    </div>
+</div>
 
 </body>
+
 </html>

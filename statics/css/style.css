@@ -1,7 +1,32 @@
-body  {
-    background-color : #712C5A;
+<!--How to give same style to multiple ids-->
+
+
+body {
+  background-color : #ffffff;
 }
 
-h1 {
- color: #ffffff;
+#random_shit {
+  display: none;
+}
+
+#logo_id {
+  opacity: 0.7;
+  transition: 0.3s;
+}
+
+#logo_id:hover {
+  opacity:1.0;
+}
+
+#random_shit {
+  display: none;
+}
+
+#to-do  {
+  opacity: 0.7;
+  transition: 0.3s;
+}
+
+#to-do:hover {
+  opacity: 1;
 }

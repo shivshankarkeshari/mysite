@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+
+    <meta charset="UTF-8">
+<!--    adding tab title-->
+
+    <title>
+        {% block title %}
+        {% endblock %}
+        </title>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'css/style1.css' %}">
+    <script src="{% static 'js/logo_click.js' %}" ></script>
+
+<!--    adding app icon-->
+    <link rel="shortcut icon" href="{% static 'img/eagle_white.png' type='image/x-icon' %}">
+
+
+</head>
+
+<body>
+
+    <a href="{% url 'stock_home_page' %}">
+    <div>
+        <img src="/static/img/eagle_white.png" height="65px" href="stock/home_page.html" id="logo_id" style="margin: 0px 0px">
+    </div>
+    <div>
+        <h1 id="random_shit" style="margin: -55px 70px">Small Blind Dealer</h1>
+    </div>
+    </a>
+
+    {% block content %}
+    {% endblock %}
+
+<!--<div class="LI-profile-badge"  data-version="v1" data-size="medium" data-locale="en_US" data-type="vertical" data-theme="light" data-vanity="shiv-shankar-keshari-0914ba129"><a class="LI-simple-link" href='https://in.linkedin.com/in/shiv-shankar-keshari-0914ba129?trk=profile-badge'>Shiv Shankar Keshari</a></div>-->
+</body>
+</html>
