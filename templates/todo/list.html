@@ -4,7 +4,7 @@
 <style>
 
 	body{
-		background-color: #638CB8;
+		background-color: #131619;
 	}
 
 	input{
@@ -32,7 +32,7 @@
 	}
 
 	.item-row{
-		background-color: #906abd;
+		background-color: #12a935;
 		margin: 10px;
 		padding: 20px;
 		border-radius: 3px;
@@ -62,15 +62,17 @@
 
 	{% for task in tasks %}
 		<div class="item-row">
-			<a class="btn btn-sm btn-info" href="{% url 'update_task' task.id %}">Update</a>
-			<a class="btn btn-sm btn-danger" href="{% url 'delete' task.id %}">Delete</a>
 
 			{% if task.complete == True %}
 			<strike>{{task}}</strike>
 			{% else %}
 			<span>{{task}}</span>
 			{% endif %}
+			<a class="btn btn-sm btn-info" href="{% url 'update_task' task.id %}">Update</a>
+			<a class="btn btn-sm btn-danger" href="{% url 'delete' task.id %}">Delete</a>
+
 		</div>
 	{% endfor %}
 	</div>
+	<a href="{% url 'stock_home_page' %}"><input type="button", value="Back to home screen"></a>
 </div>

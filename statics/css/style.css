@@ -21,12 +21,3 @@ body {
 #random_shit {
   display: none;
 }
-
-#to-do  {
-  opacity: 0.7;
-  transition: 0.3s;
-}
-
-#to-do:hover {
-  opacity: 1;
-}
