@@ -52,7 +52,7 @@
 <!--				<label>Longitude: </label>-->
 <!--				{{form.longitude}}-->
 <!--				<input class="btn btn-info" type="submit" name="Create Task">-->
-<!--			</form>-->
+			</form>
 		</div>
 	</div>
 	<div class="center-column" style="position: absolute; left: 305px;  top: 0px;">
@@ -67,8 +67,8 @@
 			<script>
 <!--			console.log("ok");-->
 			var a = {
-				latitude: "{{location.latitude}}",
-				longitude: "{{location.longitude}}"}
+				latitude: parseFloat("{{location.latitude}}"),
+				longitude: parseFloat("{{location.longitude}}")}
 			b.push(a)
 <!--			console.log(b);-->
 			</script>
@@ -133,6 +133,7 @@ worldPolygon.fill = am4core.color("#eee");
 worldPolygon.propertyFields.fill = "color";
 
 var hs = worldPolygon.states.create("hover");
+
 hs.properties.fill = chart.colors.getIndex(9);
 
 // Create country specific series (but hide it for now)
@@ -143,6 +144,7 @@ countrySeries.geodataSource.events.on("done", function(ev) {
   worldSeries.hide();
   countrySeries.show();
 });
+
 
 var countryPolygon = countrySeries.mapPolygons.template;
 <!--countryPolygon.tooltipText = "{name}";-->
@@ -163,6 +165,8 @@ worldPolygon.events.on("hit", function(ev) {
     countrySeries.geodataSource.load();
   }
 });
+
+
 
 // Set up data for countries
 var data = [];
@@ -218,32 +222,7 @@ marker.scale = 0.7;
 imageTemplate.propertyFields.latitude = "latitude";
 imageTemplate.propertyFields.longitude = "longitude";
 
-<!--imageSeries.data = [ {-->
-<!--          "title": "Delhi",-->
-<!--          'latitude': 28.644800,-->
-<!--          'longitude': 77.216721,-->
-<!--        }];-->
-
-// Add button
-var button1 = chart.chartContainer.createChild(am4core.Button);
-button1.padding(0, 0, 0, 0);
-button1.width = 50;
-button1.align = "left";
-button1.marginLeft = 10;
-
-button1.icon = new am4core.Sprite();
-button1.fill = '#dc3545';
-button1.icon.path = "M32 2a22 22 0 0 0-6 43.1L32 62l6-16.8A22 22 0 0 0 32 2zm0 34a12 12 0 1 1 12-12 12 12 0 0 1-12 12z";
-
-button1.events.on("hit", function() {
-  for (i = 0; i < b.length; i++) {
-<!--    console.log(b[i]['latitude']);-->
-  var marker = imageSeries.mapImages.create();
-  marker.latitude = parseFloat(b[i]['latitude']);
-  marker.longitude = parseFloat(b[i]['longitude']);
-}
-
-});
+imageSeries.data = b;
 
 var homeButton = new am4core.Button();
 homeButton.events.on("hit", function() {
