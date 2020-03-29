@@ -15,10 +15,8 @@ def map_view_f(request):
     if len(locations):
         a = []
         for j in range(len(locations)):
-
             a.append([])
             for i in range(len(locations)):
-                # print(int(points[i].latitude))
                 a[j].append(
                     distance(float(locations[j].latitude), float(locations[i].latitude), float(locations[j].longitude),
                              float(locations[i].longitude)))
@@ -29,11 +27,11 @@ def map_view_f(request):
     context = {'locations': locations, 'form': form, 'v': v}
 
     if request.method == 'POST':
+        form = LocationForm(request.POST)
+        print(len(request.POST['latitude']))
         print("ok")
 
-        form = LocationForm(request.POST)
-        # print(form)
-        if form.is_valid():
+        if form.is_valid() and (len(request.POST['latitude']) !=0 and len(request.POST['latitude']) != 0):
             form.save()
             return HttpResponseRedirect(reverse('map'))
 
