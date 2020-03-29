@@ -41,17 +41,16 @@
 			</form>
 		</div>
 		<div id="other" class="tabcontent">
-			<p>try to add some different features</p>
 
-<!--			<form method="POST" action="{% url 'map' %}">-->
-<!--				{% csrf_token %}-->
-<!--				<label>Name: </label>-->
-<!--				{{form.name}}-->
-<!--				<label>Latitude: </label>-->
-<!--				{{form.latitude}}-->
-<!--				<label>Longitude: </label>-->
-<!--				{{form.longitude}}-->
-<!--				<input class="btn btn-info" type="submit" name="Create Task">-->
+			<form method="POST" action="{% url 'map' %}">
+				{% csrf_token %}
+				<label>Name: </label>
+				{{form.name}}
+				<label>Latitude: </label>
+				{{form.latitude}}
+				<label>Longitude: </label>
+				{{form.longitude}}
+				<input class="btn btn-info" type="submit" name="Create Task">
 			</form>
 		</div>
 	</div>
