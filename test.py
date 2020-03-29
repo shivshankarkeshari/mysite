@@ -2,8 +2,10 @@ from __future__ import print_function
 from ortools.constraint_solver import routing_enums_pb2
 from ortools.constraint_solver import pywrapcp
 
+#
+a = [[0.0, 155.39963406684515, 310.49321745867013], [155.39963406684515, 0.0, 155.09495322428276], [310.49321745867013, 155.09495322428276, 0.0]]
 
-def create_data_model(a):
+def create_data_model():
     """Stores the data for the problem."""
     data = {}
     data['distance_matrix'] = a
@@ -24,16 +26,14 @@ def print_solution(manager, routing, solution):
         index = solution.Value(routing.NextVar(index))
         route_distance += routing.GetArcCostForVehicle(previous_index, index, 0)
     plan_output += ' {}\n'.format(manager.IndexToNode(index))
-
+    print(plan_output)
     plan_output += 'Route distance: {}miles\n'.format(route_distance)
-    # print(plan_output)
-    return plan_output
 
 
-def main(a):
+def main():
     """Entry point of the program."""
     # Instantiate the data problem.
-    data = create_data_model(a)
+    data = create_data_model()
 
     # Create the routing index manager.
     manager = pywrapcp.RoutingIndexManager(len(data['distance_matrix']),
@@ -64,7 +64,9 @@ def main(a):
 
     # Print solution on console.
     if solution:
-        return print_solution(manager, routing, solution)
+        print_solution(manager, routing, solution)
+
 
 # if __name__ == '__main__':
-# main()
+main()
+
