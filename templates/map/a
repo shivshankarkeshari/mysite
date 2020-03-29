@@ -1,0 +1,215 @@
+<!--
+first make option to select what user want
+then if current location want then show it in a Map
+if he want to check by geo coordinate then give 2 option to fill x and y
+then plot it in a map
+
+
+Brief: Build a responsive web app which
+ ---accepts multiple sets of location points
+ ---(in the form of coordinates/area names, or marker)
+ ---and then plots them on a Google Map/Bing Map.
+ ---Next, find the shortest path which connects all the points and display that on the same map.
+  Also build a screen that displays the logs of all the previously computed routes.
+Resources: Google Maps API + Django for backend
+
+
+-->
+<style>
+    body {
+            background-color: #333d36;
+    }
+</style>
+
+
+<button onclick="getLocation()">
+    Check Current Location
+</button>
+
+<p id="demo"></p>
+
+<script>
+
+var x = document.getElementById("demo");
+    function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    x.innerHTML = "unable to find";
+  }
+}
+
+var a, b;
+function showPosition(position) {
+    x.innerHTML=position.coords.latitude + " " + position.coords.longitude
+
+    a=position.coords.latitude
+    b=position.coords.longitude
+    console.log(a)
+    console.log(b)
+}
+
+</script>
+
+<div>
+    <input id="myInput">
+
+<button id="myBtn" type="submit" onclick="javascript:alert('Hello World!')">Locate</button>
+<!--I have to define on click what will happen-->
+
+
+</div>
+
+<script>
+var input = document.getElementById("myInput");
+input.addEventListener("keyup", function(event) {
+  if (event.keyCode === 13) {
+   event.preventDefault();
+   document.getElementById("myBtn").click();
+  }
+});
+</script>
+
+
+<!--<style>-->
+<!--.dropbtn {-->
+<!--  background-color: #4CAF50;-->
+<!--  color: white;-->
+<!--  padding: 16px;-->
+<!--  font-size: 16px;-->
+<!--  border: none;-->
+<!--  cursor: pointer;-->
+<!--}-->
+
+<!--.dropdown {-->
+<!--  position: relative;-->
+<!--  display: inline-block;-->
+<!--}-->
+
+<!--.dropdown-content {-->
+<!--  display: none;-->
+<!--  position: absolute;-->
+<!--  right: 0;-->
+<!--  background-color: #f9f9f9;-->
+<!--  min-width: 160px;-->
+<!--  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);-->
+<!--  z-index: 1;-->
+<!--}-->
+
+<!--.dropdown-content a {-->
+<!--  color: black;-->
+<!--  padding: 12px 16px;-->
+<!--  text-decoration: none;-->
+<!--  display: block;-->
+<!--}-->
+
+<!--.dropdown-content option:hover {background-color: blue;}-->
+
+<!--.dropdown:hover .dropdown-content {-->
+<!--  display: block;-->
+<!--}-->
+
+<!--.dropdown:hover .dropbtn {-->
+<!--  background-color: #3e8e41;-->
+<!--}-->
+<!--</style>-->
+
+<!--<div class="dropdown" style="float:left;">-->
+<!--  <button class="dropbtn">Options</button>-->
+<!--  <div class="dropdown-content" style="left:0;">-->
+<!--            <option value="free">Current location</option>-->
+<!--            <option value="basic">Geo Coordinate</option>-->
+<!--            <option value="premium">text search</option>-->
+<!--  </div>-->
+
+
+</div>
+
+
+    <p>
+        Select one from the given options:
+        <select id="select1">
+            <option value="free">Current location</option>
+            <option value="basic">Geo Coordinate</option>
+            <option value="premium">text search</option>
+        </select>
+    </p>
+
+
+    <button onclick="getOption()">
+        Check option
+    </button>
+
+<script>
+    function getOption() {
+    selectElement =
+            document.querySelector('#select1');
+
+    output = selectElement.value;
+
+    if (output== "free") getLocation()
+    else if (output=="basic"){
+    console.log(3)
+    }
+    else {
+    console.log(2)
+    }
+
+    document.querySelector('.output').textContent
+            = output;
+}
+</script>
+
+<title>To-Do List</title>
+    {% load staticfiles %}
+
+    <link rel="shortcut icon" href="{% static 'img/to_do.png' type='image/x-icon' %}">
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<style>
+
+	body{
+		background-color: #131619;
+	}
+
+	input{
+		width: 100%;
+		padding: 12px 20px;
+		margin: 8px 0;
+		box-sizing: border-box;
+	}
+
+	input::placeholder {
+	  color: #d3d3d3;
+	}
+
+	.submit{
+		background-color: #6BA3E8;
+	}
+
+	.center-column{
+		width:600px;
+		margin: 20px auto;
+		padding:20px;
+		background-color: #fff;
+		border-radius: 3px;
+		box-shadow: 6px 2px 30px 0px rgba(0,0,0,0.75);
+	}
+
+	.item-row{
+		background-color: #12a935;
+		margin: 10px;
+		padding: 20px;
+		border-radius: 3px;
+		color: #fff;
+		font-size: 16px;
+		box-shadow: 0px -1px 10px -4px rgba(0,0,0,0.75);
+	}
+
+	.btn-danger{
+		background-color: #ffae19;
+		border-color: #e59400;
+	}
+
+</style>

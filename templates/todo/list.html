@@ -1,4 +1,8 @@
 <title>To-Do List</title>
+    {% load staticfiles %}
+
+    <link rel="shortcut icon" href="{% static 'img/to_do.png' type='image/x-icon' %}">
+
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 <style>
@@ -56,6 +60,7 @@
 		<input class="btn btn-info" type="submit" name="Create Task">
 
 
+
 	</form>
 
 	<div class="todo-list">
@@ -74,5 +79,8 @@
 		</div>
 	{% endfor %}
 	</div>
+	<a class="btn btn-sm btn-danger" href="{% url 'delete all' %}">Clear All Tasks</a>
+
 	<a href="{% url 'stock_home_page' %}"><input type="button", value="Back to home screen"></a>
+
 </div>

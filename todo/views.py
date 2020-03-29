@@ -50,3 +50,10 @@ def deleteTask(request, pk):
 
     context = {'item': item}
     return render(request, 'todo/delete.html', context)
+
+
+def delete_all(request):
+    print("ok")
+
+    Task.objects.all().delete()
+    return HttpResponseRedirect(reverse('list'))

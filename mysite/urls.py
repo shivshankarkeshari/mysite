@@ -6,4 +6,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('stock.urls')),
     path('to_do/', include('todo.urls')),
+    path('map/', include('map.urls')),
 ]
