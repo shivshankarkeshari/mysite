@@ -3,7 +3,10 @@ dj-database-url==0.5.0
 Django==2.0.7
 django-heroku==0.3.1
 gunicorn==20.0.4
+ortools==7.5.7466
+protobuf==3.11.3
 psycopg2==2.8.4
 pytz==2019.3
+six==1.14.0
 sqlparse==0.3.1
 whitenoise==5.0.1

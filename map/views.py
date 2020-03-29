@@ -6,7 +6,6 @@ from .forms import LocationForm
 from django.urls import reverse
 from math import radians, cos, sin, asin, sqrt
 from . import tests
-from django.http import HttpResponse
 
 
 def map_view_f(request):
@@ -68,3 +67,4 @@ def distance(lat1, lat2, lon1, lon2):
 
 def test(request):
     pass
+
