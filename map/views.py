@@ -29,9 +29,9 @@ def map_view_f(request):
     if request.method == 'POST':
         form = LocationForm(request.POST)
         print(len(request.POST['latitude']))
-        print("ok")
+        print(request.POST)
 
-        if form.is_valid() and (len(request.POST['latitude']) !=0 and len(request.POST['latitude']) != 0):
+        if form.is_valid() and (len(request.POST['latitude']) != 0 and len(request.POST['latitude']) != 0):
             form.save()
             return HttpResponseRedirect(reverse('map'))
 
@@ -64,5 +64,6 @@ def distance(lat1, lat2, lon1, lon2):
 
 
 def test(request):
-    pass
+    return render(request, 'map/test.html')
+
 
