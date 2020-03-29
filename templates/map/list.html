@@ -41,17 +41,18 @@
 			</form>
 		</div>
 		<div id="other" class="tabcontent">
+			<p>try to add some different features</p>
 
-			<form method="POST" action="{% url 'map' %}">
-				{% csrf_token %}
-				<label>Name: </label>
-				{{form.name}}
-				<label>Latitude: </label>
-				{{form.latitude}}
-				<label>Longitude: </label>
-				{{form.longitude}}
-				<input class="btn btn-info" type="submit" name="Create Task">
-			</form>
+<!--			<form method="POST" action="{% url 'map' %}">-->
+<!--				{% csrf_token %}-->
+<!--				<label>Name: </label>-->
+<!--				{{form.name}}-->
+<!--				<label>Latitude: </label>-->
+<!--				{{form.latitude}}-->
+<!--				<label>Longitude: </label>-->
+<!--				{{form.longitude}}-->
+<!--				<input class="btn btn-info" type="submit" name="Create Task">-->
+<!--			</form>-->
 		</div>
 	</div>
 	<div class="center-column" style="position: absolute; left: 305px;  top: 0px;">
@@ -61,7 +62,17 @@
 		</div>
 		<h2>Search List</h2>
 		<div class="todo-list">
+			<script>var b = [];</script>
 			{% for location in locations %}
+			<script>
+<!--			console.log("ok");-->
+			var a = {
+				latitude: "{{location.latitude}}",
+				longitude: "{{location.longitude}}"}
+			b.push(a)
+<!--			console.log(b);-->
+			</script>
+
 				<div class="item-row">
 					{{location.name}}<br>
 				<font size="1">{{location.latitude}} {{location.longitude}}</font>
@@ -70,21 +81,19 @@
 			{% endfor %}
 		</div>
 	</div>
-	<div class="center-column" style="position: absolute; right: 20px;  top: 0px;">
-		<h2>Search List</h2>
+	<div class="center-column" style="position: absolute; left: 610px;  top: 0px; width: 650px; height: 175px;">
+		<h2>Shortest Route</h2>
 	</div>
 </div>
 
-<div id="chartdiv" style="position: absolute; left: 635px;  top: 200px; width: 645px; height: 500px; background-color: lightblue;"></div>
-
+<div id="chartdiv" style="position: absolute; left: 630px;  top: 200px; width: 650px; height: 500px; background-color: lightblue;"></div>
 
 <script>
-console.log("ok")
-var b= [
-      { "latitude": 48.856614, "longitude": 2.352222 },
-      { "latitude": 40.712775, "longitude": -74.005973 },
-      { "latitude": 49.282729, "longitude": -123.120738 }
-    ]
+console.log(b);
+</script>
+
+<script>
+
 
 am4core.ready(function() {
 
@@ -172,7 +181,7 @@ worldSeries.data = data;
 chart.zoomControl = new am4maps.ZoomControl();
 
 // Set initial zoom
-chart.homeZoomLevel = 4;
+chart.homeZoomLevel = 2;
 chart.homeGeoPoint = {
   latitude: 28.644800,
   longitude: 77.216721
@@ -206,11 +215,11 @@ marker.scale = 0.7;
 imageTemplate.propertyFields.latitude = "latitude";
 imageTemplate.propertyFields.longitude = "longitude";
 
-imageSeries.data = [ {
-          "title": "Delhi",
-          'latitude': 28.644800,
-          'longitude': 77.216721,
-        }];
+<!--imageSeries.data = [ {-->
+<!--          "title": "Delhi",-->
+<!--          'latitude': 28.644800,-->
+<!--          'longitude': 77.216721,-->
+<!--        }];-->
 
 // Add button
 var button1 = chart.chartContainer.createChild(am4core.Button);
@@ -225,10 +234,10 @@ button1.icon.path = "M32 2a22 22 0 0 0-6 43.1L32 62l6-16.8A22 22 0 0 0 32 2zm0 3
 
 button1.events.on("hit", function() {
   for (i = 0; i < b.length; i++) {
-    console.log(b[i]['latitude']);
+<!--    console.log(b[i]['latitude']);-->
   var marker = imageSeries.mapImages.create();
-  marker.latitude = b[i]['latitude'];
-  marker.longitude = b[i]['longitude'];
+  marker.latitude = parseFloat(b[i]['latitude']);
+  marker.longitude = parseFloat(b[i]['longitude']);
 }
 
 });

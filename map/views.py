@@ -14,7 +14,7 @@ def map_view_f(request):
         print("ok")
 
         form = LocationForm(request.POST)
-        print(form)
+        # print(form)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('map'))
