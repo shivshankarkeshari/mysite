@@ -28,7 +28,7 @@ def map_view_f(request):
 
     if request.method == 'POST':
         form = LocationForm(request.POST)
-        print(len(request.POST['latitude']))
+        # print(len(request.POST['latitude']))
         print(request.POST)
 
         if form.is_valid() and (len(request.POST['latitude']) != 0 and len(request.POST['latitude']) != 0):

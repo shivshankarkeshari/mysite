@@ -39,6 +39,9 @@
 			<form method="POST" action="{% url 'map' %}">
 				{% csrf_token %}
 				{{form.name}}
+				<input type="hidden" name="latitude" maxlength="250">
+				<input type="hidden" name="longitude" maxlength="250">
+
 				<input class="btn btn-info" type="submit" name="Create Task">
 			</form>
 		</div>
