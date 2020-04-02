@@ -64,6 +64,14 @@ def distance(lat1, lat2, lon1, lon2):
 
 
 def test(request):
-    return render(request, 'map/test.html')
 
+    if request.method == 'POST':
+        form = LocationForm(request.POST)
+        # print(len(request.POST['latitude']))
+        # print(request.POST)
 
+        if form.is_valid() and (len(request.POST['latitude']) != 0 and len(request.POST['latitude']) != 0):
+            print(request.POST)
+
+            form.save()
+            return HttpResponseRedirect(reverse('map'))

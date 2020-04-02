@@ -56,6 +56,10 @@ def register(request):
             user = User.objects.create_user(username=user_n, password=psd, email=email)
             user.save()
             return redirect('/')
-
     return render(request, 'stock/register.html')
 
+
+def logout(request):
+
+    auth.logout(request)
+    return redirect('/')

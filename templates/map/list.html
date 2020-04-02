@@ -218,6 +218,29 @@ chart.seriesContainer.events.on("hit", function(ev) {
 
    document.getElementById("lat-lng").innerHTML = "latitude: " + lat + "<br>" + "Longitude: "+ lng;
 
+<!--	ev.preventDefault();-->
+<!--   $(document).on('submit', 'lat_lng_name', function(){-->
+	var token = document.lat_lng_name.csrfmiddlewaretoken.value;
+
+      console.log(token);
+
+		$.ajax({
+			 url: '/map/2/',
+			 data: {
+				 name: '-',
+				 latitude: lat,
+				 longitude:lng,
+				 asd:"shiv",
+				 csrfmiddlewaretoken:token
+				},
+			type: 'POST'
+<!--			header:  {'X-CSRF-TOKEN': token}-->
+			}).done(function(response){ //
+				$("#lat-lng").html("Hello <b>world</b>!");
+				});
+<!--	});-->
+
+
 
 });
 <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
