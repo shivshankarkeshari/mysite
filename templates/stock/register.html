@@ -1,0 +1,32 @@
+{% extends 'stock/background_template.html' %}
+{% block title %}Small Blind Dealer{% endblock %}
+
+    {% block content %}
+
+<div style="background-color:lightblue; margin: 100px 150px auto auto; height:500px; width: 500px;">
+    <form action="" method="post">
+
+        {% csrf_token %}
+
+        <input type="text" name="username" placeholder="Type username" ><br>
+        <input type="email" name="email" placeholder="email_id" ><br>
+        <input type="password" name="password" placeholder="Type pass" >
+        <input type="submit">
+
+    </form>
+
+    {% if messages %}
+    {% for msg in messages %}
+    {{msg}}
+    {% endfor %}
+    {% endif %}
+
+<!--{% if messages %}-->
+<!--<ul class="messages">-->
+<!--    {% for message in messages %}-->
+<!--    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>-->
+<!--    {% endfor %}-->
+<!--</ul>-->
+<!--{% endif %}-->
+</div>
+    {% endblock %}
