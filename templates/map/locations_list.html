@@ -1,0 +1,7 @@
+<div class="item-row">
+{% for loc in locations %}
+{{ loc.name }} <br>
+<font size="1">{{loc.latitude}} {{loc.longitude}}</font>
+    <a class="btn btn-sm btn-danger" href="{% url 'delete location' loc.pk %}" style="margin: -25px auto 0px 150px;">Delete</a>
+{% endfor %}
+</div>

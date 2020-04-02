@@ -4,7 +4,6 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" href="{% static 'css/map.css' %}">
 <script src="{% static 'js/map.js' %}" ></script>
-
 <!-- Resources -->
 <script src="https://www.amcharts.com/lib/4/core.js"></script>
 <script src="https://www.amcharts.com/lib/4/maps.js"></script>
@@ -15,7 +14,7 @@
 
 
 <div>
-	<div class="center-column">
+	<div class="center-column" style="position: absolute; top: 5px;">
 		<div class="tab">
 			<button class="tablinks" onclick="searching_types(event, 'geo')">GeoPoint</button>
 			<button class="tablinks" onclick="searching_types(event, 'text_loc')">Text</button>
@@ -23,7 +22,6 @@
 		</div>
 		<div id="geo" class="tabcontent">
 			<h3>Geo-Coordinate</h3>
-
 			<form method="POST" name="lat_lng_name" action="{% url 'map' %}">
 				{% csrf_token %}
 				<input type="hidden" name="name" maxlength="250" required="" id="id_name" deg value="-">
@@ -41,7 +39,6 @@
 				{{form.name}}
 				<input type="hidden" name="latitude" maxlength="250">
 				<input type="hidden" name="longitude" maxlength="250">
-
 				<input class="btn btn-info" type="submit" name="Create Task">
 			</form>
 		</div>
@@ -58,13 +55,13 @@
 			</form>
 		</div>
 	</div>
-	<div class="center-column" style="position: absolute; left: 305px;  top: 0px;">
+	<div class="center-column" style="position: absolute; left: 305px;  top: 5px; max-height: 100%;">
 		<div>
 			<a class="btn btn-sm btn-danger" href="{% url 'delete all location' %}" style="float: left; width: 160px;">Clear Search List</a>
 			<a class="btn btn-sm btn-danger" href="{% url 'stock_home_page' %}" style="float: right; width: 100px;">Home</a>
 		</div>
 		<h2>Search List</h2>
-		<div class="todo-list">
+		<div class="todo-list" id="search_content" style="max-height: 550px; overflow-y: auto;">
 			<script>var b = [];</script>
 			{% for location in locations %}
 			<script>
@@ -86,31 +83,21 @@
 	</div>
 
 
-	<div class="center-column" style="position: absolute; left: 610px;  top: 0px; width: 650px; height: 175px;">
+	<div class="center-column" style="position: absolute; left: 610px;  top: 5px; width: 650px; height: 175px;">
 		{{v}}
 	</div>
 </div>
 
 <div id="chartdiv" style="position: absolute; left: 630px;
   top: 200px; width: 650px; height: 500px; background-color: lightblue;">
-
 </div>
 
 <div id="lat-lng" style="position: absolute; left: 20px;"></div>
-
 <script>
-console.log(b);
-</script>
-
-<script>
-
-
 am4core.ready(function() {
-
 // Themes begin
 am4core.useTheme(am4themes_animated);
 // Themes end
-
 var continents = {
   "AF": 0,
   "AN": 1,
@@ -120,29 +107,22 @@ var continents = {
   "OC": 5,
   "SA": 6
 }
-
 // Create map instance
 var chart = am4core.create("chartdiv", am4maps.MapChart);
 chart.projection = new am4maps.projections.Miller();
-
 // Create map polygon series for world map
 var worldSeries = chart.series.push(new am4maps.MapPolygonSeries());
 worldSeries.useGeodata = true;
 worldSeries.geodata = am4geodata_worldLow;
 worldSeries.exclude = ["AQ"];
-
 var worldPolygon = worldSeries.mapPolygons.template;
-
-<!--worldPolygon.tooltipText = "{name}";-->
+worldPolygon.tooltipText = "{name}";
 worldPolygon.nonScalingStroke = true;
 worldPolygon.strokeOpacity = 0.5;
 worldPolygon.fill = am4core.color("#eee");
 worldPolygon.propertyFields.fill = "color";
-
 var hs = worldPolygon.states.create("hover");
-
 hs.properties.fill = chart.colors.getIndex(9);
-
 // Create country specific series (but hide it for now)
 var countrySeries = chart.series.push(new am4maps.MapPolygonSeries());
 countrySeries.useGeodata = true;
@@ -151,10 +131,8 @@ countrySeries.geodataSource.events.on("done", function(ev) {
   worldSeries.hide();
   countrySeries.show();
 });
-
-
 var countryPolygon = countrySeries.mapPolygons.template;
-<!--countryPolygon.tooltipText = "{name}";-->
+countryPolygon.tooltipText = "{name}";
 countryPolygon.nonScalingStroke = true;
 countryPolygon.strokeOpacity = 0.5;
 countryPolygon.fill = am4core.color("#eee");
@@ -172,8 +150,6 @@ worldPolygon.events.on("hit", function(ev) {
     countrySeries.geodataSource.load();
   }
 });
-
-
 
 // Set up data for countries
 var data = [];
@@ -215,14 +191,7 @@ chart.seriesContainer.events.on("hit", function(ev) {
 
    var lat = parseFloat(coords.latitude).toFixed(2);
    var lng = parseFloat(coords.longitude).toFixed(2);
-
-   document.getElementById("lat-lng").innerHTML = "latitude: " + lat + "<br>" + "Longitude: "+ lng;
-
-<!--	ev.preventDefault();-->
-<!--   $(document).on('submit', 'lat_lng_name', function(){-->
-	var token = document.lat_lng_name.csrfmiddlewaretoken.value;
-
-      console.log(token);
+   var token = document.lat_lng_name.csrfmiddlewaretoken.value;
 
 		$.ajax({
 			 url: '/map/2/',
@@ -233,14 +202,16 @@ chart.seriesContainer.events.on("hit", function(ev) {
 				 asd:"shiv",
 				 csrfmiddlewaretoken:token
 				},
-			type: 'POST'
-<!--			header:  {'X-CSRF-TOKEN': token}-->
+			type: 'POST',
+			success: function (data) {
+							console.log(data);
+                            $("#search_content").html(data);
+                            }
 			}).done(function(response){ //
-				$("#lat-lng").html("Hello <b>world</b>!");
+<!--				console.log(respose);-->
+   document.getElementById("lat-lng").innerHTML = "latitude: " + lat + "<br>" + "Longitude: "+ lng;
+<!--				$("#search_content").html("as");-->
 				});
-<!--	});-->
-
-
 
 });
 <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
