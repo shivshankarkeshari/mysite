@@ -11,8 +11,8 @@ from . import tests
 def map_view_f(request):
     locations = LocationList.objects.all()
     form = LocationForm()
-
-    if len(locations):
+    total_obj = len(locations)
+    if total_obj:
         a = []
         for j in range(len(locations)):
             a.append([])
@@ -24,12 +24,15 @@ def map_view_f(request):
     else:
         v = "Ok"
 
+    # if total_obj > 10:
+        # return render()
+
     context = {'locations': locations, 'form': form, 'v': v}
 
     if request.method == 'POST':
         form = LocationForm(request.POST)
         # print(len(request.POST['latitude']))
-        print(request.POST)
+        # print(request.POST)
 
         if form.is_valid() and (len(request.POST['latitude']) != 0 and len(request.POST['latitude']) != 0):
             form.save()

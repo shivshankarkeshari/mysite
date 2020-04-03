@@ -185,8 +185,9 @@ var targetSVG = "M9,0C4.029,0,0,4.029,0,9s4.029,9,9,9s9-4.029,9-9S13.971,0,9,0z 
 
 
 chart.seriesContainer.events.on("hit", function(ev) {
-  console.log(chart.svgPointToGeo(ev.svgPoint));
+  console.log(chart);
   var coords = chart.svgPointToGeo(ev.svgPoint);
+<!--  console.log(coords);-->
   var marker = imageSeries.mapImages.create();
   marker.latitude = coords.latitude;
   marker.longitude = coords.longitude;
@@ -206,7 +207,7 @@ chart.seriesContainer.events.on("hit", function(ev) {
 				},
 			type: 'POST',
 			success: function (data) {
-							console.log(data);
+<!--							console.log(data);-->
                             $("#search_content").html(data);
                             }
 			}).done(function(response){ //
