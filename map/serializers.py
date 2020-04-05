@@ -65,3 +65,21 @@ class LocationModelSerializer(serializers.ModelSerializer):
 # function based api views
 # generic based views
 
+
+
+
+
+
+
+                                                                            # class DeliveryItemSerializer(serializers.ModelSerializer):
+                                                                            #
+                                                                            #     product_name = serializers.SerializerMethodField(read_only=True)
+                                                                            #
+                                                                            #     def get_product_name(self, obj):
+                                                                            #         return obj.product.name
+                                                                            #
+                                                                            #     class Meta:
+                                                                            #         model = DeliveryItem
+                                                                            #         fields = (
+                                                                            #             (...your field names),
+                                                                            #             'product_name',)
