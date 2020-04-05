@@ -5,6 +5,9 @@
 
 </script>
 <head>
+        <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.7.5/brython.min.js">
+    </script>
 
     <meta charset="UTF-8">
 <!--    adding tab title-->
@@ -20,7 +23,9 @@
 
 </head>
 
-<body>
+<!--<body>-->
+<body onload=brython()>
+
 <!--<div style="height: 100px; width: 100px; display: block; background-color:lightblue">-->
 
 <div>
@@ -40,7 +45,15 @@
         <img src="{% static 'img/to_do.png' %}" height="65px" id="logo_id" style="margin: 100px auto; display: block">
         </a>
     </div>
+    <script type="text/python">
+        from browser import document, alert
+        def greet(event):
+            alert("Hello " + document["name-box"].value + "!")
+        document["greet-button"].bind("click", greet)
+    </script>
 
+    <input id="name-box" placeholder="Enter your name">
+    <button id="greet-button">Say Hello</button>
 
 </div>
 
