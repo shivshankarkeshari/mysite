@@ -26,3 +26,60 @@
 # }
 #
 # });
+
+
+class Users(models.model):
+    name = models.CharField()
+
+
+COLORS = [('1', 'red'),
+          ('2', 'blue'),
+          ('3', 'Yellow')]
+
+
+class station(models.model):
+    color = models.CharField(ChoiceField=COLORS)
+    name = models.CharField()
+    lat = models.DecimalField()
+    lng = models.DecimalField()
+
+
+class TrainData(models.model):
+    train_no = models.IntegerField()
+    train_route_details = ArrayField(models.ForignKey(LocationList))
+
+
+class UserTravelDetails:
+    def __init__(self, function):
+        self.route_string = route_string
+
+    usr = models.ForignKey(Users)
+    start_station_id = models.ForignKey(station)
+    destination_station_id = models.ForignKey(station)
+    route_string = models.CharField(Default="ok")
+
+    def __call__(self):
+        self.route_string(self)
+
+
+def route_string(user):
+    start_station = user.start_station_id
+    destination_station = user.destination_station_id
+
+    # A and C both on same color
+    # A-->C
+
+    if start_station.color == destination_station.color:
+        user.route_string = f"{start_station.name}---> {destination_station.name}"
+    else:
+        # A---> D---> C
+
+        color1_objects = [i.name for i in station.objects.all().filter(color=start_station.color)]
+        color2_objects = [i.name for i in station.objects.all().filter(color=destination_station.color)]
+        junction_station = [i for i, j in zip(color1_objects, color2_objects) if i == j]
+        if junction_station:
+            user.route_string = f"{start_station}--> {junction_station}--> {destination_station}"
+        else:
+            # remaining_color_list =
+            pass
+        # A---> B---> D---> C

@@ -113,6 +113,9 @@ def loc_list(request):
         <class 'rest_framework.serializers.ListSerializer'> <class 'rest_framework.utils.serializer_helpers.ReturnList'>
         In your view instead of using Response(serializer) you need to use Response(serializer.data)
         '''
+        # print(serializer.data)
+        # a = [{"id": 247, "name": "shiv", "latitude": "22.0000000000000000", "longitude": "12.0000000000000000"}, {"id": 249, "name": "shankar", "latitude": "22.0000000000000000", "longitude": "12.0000000000000000"}]
+        # return JsonResponse(a, safe=False)
         return JsonResponse(serializer.data, safe=False)
 
     elif request.method == 'POST':
