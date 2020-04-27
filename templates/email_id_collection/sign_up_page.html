@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Register Email_id Page</title>
+</head>
+<body>
+		<h1>Welcome to Email registration Page</h1>
+		{% if messages %}
+			<ul class="messages">
+				{% for message in messages %}
+				 {{ message }}
+				{% endfor %}
+			</ul>
+		{% endif %}
+		<form action= "" method="POST">
+			{% csrf_token %}
+			   <div class="form-group col-md-6">
+      				<!-- <label for="inputEmail4">Email</label> -->
+      				<input type="email" class="form-control" id="inputEmail4" placeholder="Email", name="Email_id">
+    		  </div>
+			  <div class="form-row">
+				    <div class="col">
+				      <input type="text" class="form-control" placeholder="First name", name = "First_Name">
+				    </div>
+				    <div class="col">
+				      <input type="text" class="form-control" placeholder="Last name", name="Last_Name">
+				    </div>
+			  </div>
+			  <button type="submit" class="btn btn-primary", value="POST"/>Submit</button>
+		</form>
+</body>
+</html>

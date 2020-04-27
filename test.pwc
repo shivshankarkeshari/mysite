@@ -26,9 +26,10 @@
 # }
 #
 # });
+from django.db import models
 
 
-class Users(models.model):
+class Users1(models.Model):
     name = models.CharField()
 
 
@@ -37,14 +38,14 @@ COLORS = [('1', 'red'),
           ('3', 'Yellow')]
 
 
-class station(models.model):
+class station(models.Model):
     color = models.CharField(ChoiceField=COLORS)
     name = models.CharField()
     lat = models.DecimalField()
     lng = models.DecimalField()
 
 
-class TrainData(models.model):
+class TrainData(models.Model):
     train_no = models.IntegerField()
     train_route_details = ArrayField(models.ForignKey(LocationList))
 
@@ -83,3 +84,4 @@ def route_string(user):
             # remaining_color_list =
             pass
         # A---> B---> D---> C
+
